@@ -17,8 +17,12 @@ bool operator != (tCoor c1, tCoor c2); /*compara si dos coordenadas son distinta
 tCoor operator + (tCoor c1, tCoor c2); /*devuelve la coordenada resultante de sumar las dos
 coordenadas dadas por parámetros.*/
 
+tCoor operator-(tCoor c1, tCoor c2); /*devuelve la coordenada resultandte de restar las dos
+									 coordenadas pasadas por parametro*/
+
 
 
 
 
 #endif
+
