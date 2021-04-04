@@ -154,7 +154,7 @@ bool juegoGanado(tJuegoPM jpm){		//funcion de logica especial propia para compro
 	return ganado;
 }
 
-bool accion(tJuegoPM& jpm){
+bool accion(tJuegoPM& jpm){		//¡Ojo! Esta funcion es de tipo void orinalmente! Preguntar profesor si problema con retorno.
 	bool accionado = false;
 	string ac;
 	int f1, f2, c1, c2;
