@@ -168,36 +168,31 @@ bool accion(tJuegoPM& jpm){		//¡Ojo! Esta funcion es de tipo void originalmente!
 			cin >> c1 >> c2;
 			swapC(jpm.matIni, c1, c2);
 		}else if (ac == "VF"){
-
 			cin >> f1;
 			voltearF(jpm.matIni, f1);
-
 		}else if (ac == "SD"){
 			cin >> f1;
 			swapD(jpm.matIni, f1);
-
 		}else if (ac == "VC"){
-
 			cin >> f1;
 			voltearC(jpm.matIni, f1);
-			
-
 		}else if (ac == "VD"){
-
 			cin >> f1;
 			voltearD(jpm.matIni, f1);
-			
-
 		}
 	}else if (jpm.tipo == TiposJPM[1]){
 		cin >> ac;
 		if (ac == "VV") {
-
+			cout << "Que columna quieres voltear: ";
+			cin >> c1;
+			voltearC(jpm.matIni, c1);
 		}
 		else if (ac == "VH") {
-
+			cout << "Que fila quieres voltear: ";
+			cin >> f1;
+			voltearF(jpm.matIni, f1);
 		}
-		else if (ac == "RD") {
+		else if (ac == "RD"){
 
 		}
 		else if (ac == "SA") {

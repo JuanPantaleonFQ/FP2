@@ -96,15 +96,30 @@ bool swapD(tMatrizChar& mat, int d) {
 }
 
 bool voltearF(tMatrizChar& mat, int f){
-
-	return false;
+	uint8 aux;
+	if (f > mat.numFilas || f < 0) { return false; }
+	else {
+		for (int i = 0; i < (mat.numCols%2);i++) {
+			aux = mat.datos[f][i];
+			mat.datos[f][i] = mat.datos[f][mat.numCols - i];
+			mat.datos[f][mat.numCols - i] = aux;
+		}
+	}
 }
 
 bool voltearC(tMatrizChar& mat, int c){
-
-	return false;
+	uint8 aux;
+	if (c > mat.numCols || c < 0) { return false; }
+	else {
+		for (int i = 0; i < (mat.numFilas % 2); i++) {
+			aux = mat.datos[c][i];
+			mat.datos[c][i] = mat.datos[c][mat.numCols - i];
+			mat.datos[c][mat.numCols - i] = aux;
+		}
+	}
 }
 
 bool voltearD(tMatrizChar& mat, int c){
+
 	return false;
 }
