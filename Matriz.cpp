@@ -104,6 +104,7 @@ bool voltearF(tMatrizChar& mat, int f){
 			mat.datos[f][i] = mat.datos[f][mat.numCols - i];
 			mat.datos[f][mat.numCols - i] = aux;
 		}
+		return true;
 	}
 }
 
@@ -116,6 +117,7 @@ bool voltearC(tMatrizChar& mat, int c){
 			mat.datos[c][i] = mat.datos[c][mat.numCols - i];
 			mat.datos[c][mat.numCols - i] = aux;
 		}
+		return true;
 	}
 }
 
