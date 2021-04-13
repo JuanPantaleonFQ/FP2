@@ -6,8 +6,6 @@
 typedef struct {
 	int coordenadaX;
 	int coordenadaY;
-
-
 }tCoor;
 
 bool operator == (tCoor c1, tCoor c2);  /*compara si dos coordenadas son iguales.*/

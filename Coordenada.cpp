@@ -7,13 +7,8 @@ bool operator==(tCoor c1, tCoor c2) {
 }
 
 bool operator!=(tCoor c1, tCoor c2) {
-	if (c1 == c2) {
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	if (c1 == c2) {	return false; }
+	else{ return true; }
 }
 
 tCoor operator+(tCoor c1, tCoor c2) {

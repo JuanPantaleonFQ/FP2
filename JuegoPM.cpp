@@ -154,7 +154,7 @@ bool juegoGanado(tJuegoPM jpm){		//funcion de logica especial propia para compro
 	return ganado;
 }
 
-bool accion(tJuegoPM& jpm){	
+bool accion(tJuegoPM& jpm){		//¡Ojo! Esta funcion es de tipo void originalmente! Preguntar profesor si problema con retorno.
 	bool accionado = false;
 	string ac;
 	int f1, f2, c1, c2;
@@ -162,38 +162,48 @@ bool accion(tJuegoPM& jpm){
 		cin >> ac;
 		if (ac == "SF") {
 			cin >> f1 >> f2;
-			accionado =swapF(jpm.matIni, f1, f2);
+			swapF(jpm.matIni, f1, f2);
 		}
 		else if (ac == "SC"){
 			cin >> c1 >> c2;
-			accionado = swapC(jpm.matIni, c1, c2);
+			swapC(jpm.matIni, c1, c2);
 		}else if (ac == "VF"){
 
 			cin >> f1;
-			accionado = voltearF(jpm.matIni, f1);
+			voltearF(jpm.matIni, f1);
 
 		}else if (ac == "SD"){
 			cin >> f1;
-			accionado = swapD(jpm.matIni, f1);
+			swapD(jpm.matIni, f1);
 
 		}else if (ac == "VC"){
 
 			cin >> f1;
-			accionado = voltearC(jpm.matIni, f1);
+			voltearC(jpm.matIni, f1);
 			
 
 		}else if (ac == "VD"){
 
 			cin >> f1;
-			accionado = voltearD(jpm.matIni, f1);
+			voltearD(jpm.matIni, f1);
 			
 
 		}
 	}else if (jpm.tipo == TiposJPM[1]){
+		cin >> ac;
+		if (ac == "VV") {
 
+		}
+		else if (ac == "VH") {
 
+		}
+		else if (ac == "RD") {
+
+		}
+		else if (ac == "SA") {
+
+		}
 	}
-	return accionado;
 }
 
 
