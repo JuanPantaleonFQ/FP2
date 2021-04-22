@@ -1,19 +1,23 @@
-#include <iostream>
+//Realizado por Juan Pantaleon Femenia Quevedo y Carlos Garcia Tovar.
 #include "JuegoPM.h"
-using namespace std;
+
+
+const string msgerror = "Numero de intentos excedido";
+
 
 void banner(){		//done
-	cout << "$$$$$$$\                                $$\                                                             " << endl;
-	cout << "$$  __$$\                               $$ |                                                            " << endl;
-	cout << "$$ |  $$ |$$\   $$\ $$$$$$$$\ $$$$$$$$\ $$ | $$$$$$\         $$$$$$\   $$$$$$\  $$$$$$\$$$$\   $$$$$$\  " << endl;
-	cout << "$$$$$$$  |$$ |  $$ |\____$$  |\____$$  |$$ |$$  __$$\       $$  __$$\  \____$$\ $$  _$$  _$$\ $$  __$$\ " << endl;
-	cout << "$$  ____/ $$ |  $$ |  $$$$ _/   $$$$ _/ $$ |$$$$$$$$ |      $$ /  $$ | $$$$$$$ |$$ / $$ / $$ |$$$$$$$$ |" << endl;
-	cout << "$$ |      $$ |  $$ | $$  _/    $$  _/   $$ |$$   ____|      $$ |  $$ |$$  __$$ |$$ | $$ | $$ |$$   ____|" << endl;
-	cout << "$$ |      \$$$$$$  |$$$$$$$$\ $$$$$$$$\ $$ |\$$$$$$$\       \$$$$$$$ |\$$$$$$$ |$$ | $$ | $$ |\$$$$$$$\ " << endl;
-	cout << "\__|       \______/ \________|\________|\__| \_______|       \____$$ | \_______|\__| \__| \__| \_______|" << endl;
-	cout << "                                                            $$\   $$ |                                  " << endl;
-	cout << "                                                            \$$$$$$  |                                  " << endl;
-	cout << "                                                             \______/                                   " << endl;
+	cout << endl << endl;
+	cout << "$$$$$$$\                                $$\              " << endl;
+	cout << "$$  __$$\                               $$ |             " << endl;
+	cout << "$$ |  $$ |$$\   $$\ $$$$$$$$\ $$$$$$$$\ $$ |    $$$$$$\  " << endl;
+	cout << "$$$$$$$  |$$ |  $$ |\____$$  |\____$$  |$$ |  $$  __$$\  " << endl;
+	cout << "$$  ____/ $$ |  $$ |  $$$$ _/   $$$$ _/ $$ |  $$$$$$$$ | " << endl;
+	cout << "$$ |      $$ |  $$ | $$  _/    $$  _/   $$ |  $$   ____| " << endl;
+	cout << "$$ |      \$$$$$$  |$$$$$$$$\ $$$$$$$$\ $$ |  \$$$$$$$\  " << endl;
+	cout << "\__|       \______/ \________|\________|\__|   \_______| " << endl;
+	cout << "                                                         " << endl;
+	cout << "                                                         " << endl;
+	cout << "                                                         " << endl;
 
 }
 
@@ -30,7 +34,7 @@ int menu() {		//done
 		cin >> opcion;
 
 	} while (opcion > 2 || opcion < 0);
-	
+
 	return opcion;
 }
 
@@ -45,33 +49,33 @@ void mainJuegoPM() {		//done
 			exit = true;
 			break;
 		case 1:
-			juegoCorrecto =iniciar(juego, "1D");
-			if (!juegoCorrecto){
-				cout << "Error al iniciar el juego..." << endl;
-			}
-			if (!jugar(juego)) {
-				cout << "Error al jugar" << endl;
-			}
-
-			break;
-		case 2:
-			juegoCorrecto =iniciar(juego, "2D");
+			juegoCorrecto = iniciar(juego, "1D");
 			if (!juegoCorrecto) {
 				cout << "Error al iniciar el juego..." << endl;
 			}
 			if (!jugar(juego)) {
-				cout << "Error al jugar" << endl;
+				cout << msgerror << endl;
 			}
-			
-		}			 
+
+			break;
+		case 2:
+			juegoCorrecto = iniciar(juego, "2D");
+			if (!juegoCorrecto) {
+				cout << "Error al iniciar el juego..." << endl;
+			}
+			if (!jugar(juego)) {
+				cout << msgerror << endl;
+			}
+
+		}
 
 	} while (!exit);
-	
-	
-	
+
+
+
 }
 
-bool iniciar(tJuegoPM& jpm, string modo){		//done
+bool iniciar(tJuegoPM& jpm, string modo) {		//done
 	bool iniciado = false;
 	jpm.tipo = modo;
 	if (cargar(jpm))
@@ -82,70 +86,70 @@ bool iniciar(tJuegoPM& jpm, string modo){		//done
 	{
 		cout << "No se ha cargado el juego..." << endl;
 	}
-	
+
 
 	return iniciado;
 }
 
-bool cargar(tJuegoPM& jpm){	//done
+bool cargar(tJuegoPM& jpm) {	//done revisada
 	string nombre;
 	ifstream archivo;
-	bool cargado = false, matrizIniCharge= false,matrizFinCharge = false;
+	bool cargado = false, matrizIniCharge = false, matrizFinCharge = false;
+	
+	
 
-	tMatrizChar matrizInicial;
-	tMatrizChar matrizfinal;
 	cout << "Nombre del archivo:" << endl;//(aqui es donde se pide el nombre de archivo y se abre el correspondiente).
 	cin >> nombre;
 	archivo.open(nombre);		//con el .txt(obligatorio)
-	if (!archivo.is_open()){
+	if (!archivo.is_open()) {
 		cout << "Error en la apertura&carga del archivo..." << endl;
 
-	}else{
-		matrizIniCharge = cargar(matrizInicial, archivo);
-		matrizFinCharge = cargar(matrizfinal, archivo);
+	}
+	else {
+		
+		matrizIniCharge = cargar(jpm.matIni, archivo);
+		matrizFinCharge = cargar(jpm.matFin, archivo);
 		archivo >> jpm.num;	//para leer los numeros de intentos
 		archivo.close();
-		if (matrizIniCharge && matrizFinCharge){
+		if (matrizIniCharge && matrizFinCharge) {
 			cargado = true;
-		}else{
+
+		}
+		else {
 			cargado = false;
 		}
-		
-		
-		
+
+
+
 
 	}
 	return cargado;
 }
 
-void mostrar(const tJuegoPM& jpm){		//done
-	cout << "Numero de intentos: " << jpm.num << endl;
+void mostrar(const tJuegoPM& jpm) {		//done
+	cout << endl << "Numero de intentos: " << jpm.num << endl;
 	cout << "Imagen original:" << endl;
 	printMatriz(jpm.matIni);
 	cout << "Imagen final: " << endl;
 	printMatriz(jpm.matFin);
-	
-
-
 }
 
-bool jugar(tJuegoPM& jpm){
-	int contadorJuegos = 0;
+bool jugar(tJuegoPM& jpm) {
+	
 	bool jugado = false, ganado = false;
 	mostrar(jpm);
-	while(contadorJuegos != jpm.num && ganado ) {	//una vez empieza el juego,hasta que no haya utilizado todos
-		if (accion(jpm)){							//los intentos, o no haya ganado, se recogera una accion a realizar.
-			jugado = true;
-		}
+	while (jpm.num != 0 || ganado) {	//una vez empieza el juego,hasta que no haya utilizado todos
+		jugado = accion(jpm);
+		jpm.num--;
 		mostrar(jpm);
 		ganado = juegoGanado(jpm);
-		contadorJuegos++;
+		
 	}
 
 	return jugado;
 }
 
-bool juegoGanado(tJuegoPM jpm){		//funcion de logica especial propia para comprobar si ha ganado el juego
+bool juegoGanado(const tJuegoPM& jpm) {		//funcion de logica especial propia para comprobar si ha ganado el juego
 	bool ganado = false;
 	if (jpm.matIni == jpm.matFin)		//utiliza el operador == definido en el modulo matriz para comparar las matrices y ver si son iguales.
 	{
@@ -154,52 +158,72 @@ bool juegoGanado(tJuegoPM jpm){		//funcion de logica especial propia para compro
 	return ganado;
 }
 
-bool accion(tJuegoPM& jpm){		//¡Ojo! Esta funcion es de tipo void originalmente! Preguntar profesor si problema con retorno.
+bool accion(tJuegoPM& jpm) {
+	cout << endl << "Introduzca un comando a realizar:   " << endl << endl;
+	
 	bool accionado = false;
 	string ac;
 	int f1, f2, c1, c2;
-	if (jpm.tipo == TiposJPM[0]){
+	if (jpm.tipo == "1D") {
 		cin >> ac;
 		if (ac == "SF") {
+			cout << "Que columna quieres voltear: " << endl;
 			cin >> f1 >> f2;
 			swapF(jpm.matIni, f1, f2);
 		}
-		else if (ac == "SC"){
+		else if (ac == "SC") {
+			cout << "Que columna quieres voltear: " << endl;
 			cin >> c1 >> c2;
 			swapC(jpm.matIni, c1, c2);
-		}else if (ac == "VF"){
+		}
+		else if (ac == "VF") {
+			cout << "Que columna quieres voltear: " << endl;
 			cin >> f1;
 			voltearF(jpm.matIni, f1);
-		}else if (ac == "SD"){
+		}
+		else if (ac == "SD") {
+			cout << "Que columna quieres voltear: " << endl;
 			cin >> f1;
 			swapD(jpm.matIni, f1);
-		}else if (ac == "VC"){
+		}
+		else if (ac == "VC") {
+			cout << "Que columna quieres voltear: " << endl;
 			cin >> f1;
 			voltearC(jpm.matIni, f1);
-		}else if (ac == "VD"){
+		}
+		else if (ac == "VD") {
+			cout << "Que diagnolal desea voltear: " << endl;
 			cin >> f1;
 			voltearD(jpm.matIni, f1);
 		}
-	}else if (jpm.tipo == TiposJPM[1]){
+	}
+	else if (jpm.tipo == "2D") {
 		cin >> ac;
 		if (ac == "VV") {
 			cout << "Que columna quieres voltear: ";
 			cin >> c1;
-			voltearC(jpm.matIni, c1);
+		    voltearC(jpm.matIni, c1);
 		}
 		else if (ac == "VH") {
 			cout << "Que fila quieres voltear: ";
 			cin >> f1;
 			voltearF(jpm.matIni, f1);
 		}
-		else if (ac == "RD"){
+		else if (ac == "RD") {		//funciona correctamente
+			rotarD(jpm.matIni);
 
 		}
 		else if (ac == "SA") {
-
+			tCoor a,b;
+			cout << "Casilla 1: " << endl;
+			cin >> a.coordenadaX;
+			cin >> a.coordenadaY;
+			cout << endl << "Casilla 2: ";
+			cin >> b.coordenadaX;
+			cin >> b.coordenadaY;
+			swapAdy(jpm.matIni, a, b);
+			
 		}
 	}
+	return accionado;
 }
-
-
-

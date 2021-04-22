@@ -1,7 +1,9 @@
-//#pragma once
+#pragma once
+//Realizado por Juan Pantaleon Femenia Quevedo y Carlos Garcia Tovar.
 #ifndef JUEGOPM_H
 #define JUEGOPM_H
 #include "Matriz.h"
+
 
 typedef struct {
 	string tipo;	//tipo de juego, 2D o 1D
@@ -9,19 +11,21 @@ typedef struct {
 	tMatrizChar matIni, matFin;
 } tJuegoPM;
 
-string TiposJPM[]{ "1D","2D" };
+//string TiposJPM[]{ "1D","2D" };
 
 void mainJuegoPM();
 
 int menu();
 
-void banner();
+void printMatriz(const tMatrizChar& mat); //Funcion añadida exclusiva @juanfemeniaquevedo, enseña la matriz que se le pase por parametro
+
+//void banner();
 
 bool iniciar(tJuegoPM& jpm, string modo);
 
 bool cargar(tJuegoPM& jpm);
 
-bool juegoGanado(tJuegoPM jpm);
+bool juegoGanado(const tJuegoPM& jpm);
 
 void mostrar(const tJuegoPM& jpm);
 
@@ -35,5 +39,3 @@ bool accion(tJuegoPM& jpm);
 
 
 #endif 
-
-

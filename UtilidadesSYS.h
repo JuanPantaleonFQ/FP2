@@ -1,7 +1,12 @@
-//#pragma once
+#pragma once
+//Realizado por Juan Pantaleon Femenia Quevedo y Carlos Garcia Tovar.
+
 #ifndef UTILIDADESYS_H
 #define UTILIDADESYS_H
 #include <fstream>
+#include <Windows.h>
+#include <iostream>
+using namespace std;
 
 typedef unsigned char uint8;  // Byte
 //typedef unsigned short int usint; // entero pequeño sin signo
@@ -13,3 +18,4 @@ void pausa();
 void colorCTA(uint8 color, uint8 fondo);
 
 #endif
+

@@ -1,4 +1,5 @@
 #pragma once
+//Realizado por Juan Pantaleon Femenia Quevedo y Carlos Garcia Tovar.
 #ifndef COORDENADA_H
 #define COORDENADA_H
 #include "UtilidadesSYS.h"
@@ -23,4 +24,5 @@ tCoor operator-(tCoor c1, tCoor c2); /*devuelve la coordenada resultandte de res
 
 
 #endif
+
 
