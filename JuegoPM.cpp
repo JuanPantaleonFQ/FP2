@@ -102,7 +102,7 @@ bool cargar(tJuegoPM& jpm) {	//done revisada
 	cin >> nombre;
 	archivo.open(nombre);		//con el .txt(obligatorio)
 	if (!archivo.is_open()) {
-		cout << "Error en la apertura&carga del archivo..." << endl;
+		cout << "Error en la apertura & carga del archivo..." << endl;
 
 	}
 	else {
@@ -143,7 +143,6 @@ bool jugar(tJuegoPM& jpm) {
 		jpm.num--;
 		mostrar(jpm);
 		ganado = juegoGanado(jpm);
-		
 	}
 
 	return jugado;
@@ -171,22 +170,22 @@ bool accion(tJuegoPM& jpm) {
 			cin >> f1 >> f2;
 			swapF(jpm.matIni, f1, f2);
 		}
-		else if (ac == "SC") {		//no funciona correctamente(revisar)
+		else if (ac == "SC") {		//no funciona correctamente(revisar)/Creo que esta arrglado (Revisar)
 			cout << "   Que columna quieres voltear: " << endl;
 			cin >> c1 >> c2;
 			swapC(jpm.matIni, c1, c2);
 		}
-		else if (ac == "VF") {		//no funciona correctamente(revisar)
+		else if (ac == "VF") {		//no funciona correctamente(revisar)/Creo que esta arrglado (Revisar)
 			cout << "   Que columna quieres voltear: " << endl;
 			cin >> f1;
 			voltearF(jpm.matIni, f1);
 		}
-		else if (ac == "SD") {		//no funciona correctamente(revisar)
+		else if (ac == "SD") {		//no funciona correctamente(revisar) /No esta creada la funcion y no se como hacerla
 			cout << "   Que columna quieres voltear: " << endl;
 			cin >> f1;
 			swapD(jpm.matIni, f1);
 		}
-		else if (ac == "VC") {	    //no funciona correctamente(revisar)
+		else if (ac == "VC") {	    //no funciona correctamente(revisar) /Arreglado
 			cout << "   Que columna quieres voltear: " << endl;
 			cin >> f1;
 			voltearC(jpm.matIni, f1);
@@ -195,7 +194,6 @@ bool accion(tJuegoPM& jpm) {
 			cout << "   Que diagnolal desea voltear: " << endl;
 			cin >> f1;
 			voltearD(jpm.matIni, f1);
-
 		}
 	}
 	else if (jpm.tipo == "2D") {
@@ -203,11 +201,12 @@ bool accion(tJuegoPM& jpm) {
 		if (ac == "VV") {			//no funciona correctamente(revisar)
 			//esta funcion VV no requiere de parametros revisar pdf practica		
 			//voltearV(jpm.matIni);		//falta por hacer(no se ha hecho ni creado)
+			voltearV(jpm.matIni);
 		}
 		else if (ac == "VH") {		//no funciona correctamente(revisar)
 			//esta funcion VH no requiere de parametros revisar pdf practica		
 			//void voltearH(jpm.matIni):	//falta por hacer(no se ha hecho ni creado)
-			
+			voltearH(jpm.matIni);
 		}
 		else if (ac == "RD") {		//funciona correctamente
 			rotarD(jpm.matIni);

@@ -46,6 +46,9 @@ bool voltearC(tMatrizChar& mat, int c); /*dar la vuelta a la columna c con
 
 bool voltearD(tMatrizChar& mat, int c);	
 
+void voltearV(tMatrizChar& mat);
+
+void voltearH(tMatrizChar& mat);
 
 #endif 
 

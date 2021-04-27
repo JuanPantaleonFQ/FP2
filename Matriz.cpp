@@ -80,7 +80,7 @@ bool swapC(tMatrizChar& mat, int c1, int c2) {
 		return false;
 	}
 	else {
-		for (int i = 0; i < mat.numFilas; i++) {
+		for (int i = 0; i < mat.numFilas/2; i++) {
 			aux = mat.datos[i][c2];
 			mat.datos[i][c1] = mat.datos[i][c2];
 			mat.datos[i][c2] = aux;
@@ -99,9 +99,10 @@ bool swapD(tMatrizChar& mat, int d) {
 
 bool voltearF(tMatrizChar& mat, int f){
 	uint8 aux;
+	int numVeces = mat.numCols / 2;
 	if (f > mat.numFilas || f < 0) { return false; }
 	else {
-		for (int i = 0; i < (mat.numCols%2);i++) {
+		for (int i = 0; i < numVeces;i++) {
 			aux = mat.datos[f][i];
 			mat.datos[f][i] = mat.datos[f][mat.numCols - i];
 			mat.datos[f][mat.numCols - i] = aux;
@@ -112,12 +113,13 @@ bool voltearF(tMatrizChar& mat, int f){
 
 bool voltearC(tMatrizChar& mat, int c) {
 	uint8 aux;
+	int numVeces = mat.numFilas/2;
 	if (c > mat.numCols || c < 0) { return false; }
 	else {
-		for (int i = 0; i < (mat.numFilas % 2); i++) {
-			aux = mat.datos[c][i];
-			mat.datos[c][i] = mat.datos[c][mat.numCols - i];
-			mat.datos[c][mat.numCols - i] = aux;
+		for (int i = 0; i < numVeces; i++) {
+			aux = mat.datos[i][c];
+			mat.datos[i][c] = mat.datos[mat.numFilas - (i+1)][c];
+			mat.datos[mat.numFilas- (i+1)][c] = aux;
 		}
 		return true;
 	}
@@ -192,8 +194,29 @@ bool voltearD(tMatrizChar& mat, int d){
 		}
 	}
 	return resultado;
-
-
-
 	return false;
+}
+
+void voltearV(tMatrizChar& mat) {
+	int numVeces = mat.numCols / 2;
+	uint8 aux;
+	for (int i = 0; i < numVeces; i++) {
+		for (int j = 0; j < mat.numFilas; j++) {
+			aux = mat.datos[i][j];
+			mat.datos[i][j] = mat.datos[i][mat.numCols - j];
+			mat.datos[i][mat.numCols - j] = aux;
+		}
+	}
+}
+
+void voltearH(tMatrizChar& mat) {
+	int numVeces = mat.numFilas / 2;
+	uint8 aux;
+	for (int i = 0; i < numVeces; i++) {
+		for (int j = 0; j < mat.numFilas; j++) {
+			aux = mat.datos[i][j];
+			mat.datos[i][j] = mat.datos[mat.numFilas-i][j];
+			mat.datos[mat.numFilas - i][j] = aux;
+		}
+	}
 }
