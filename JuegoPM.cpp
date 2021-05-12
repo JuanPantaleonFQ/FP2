@@ -102,7 +102,7 @@ bool cargar(tJuegoPM& jpm) {	//done revisada
 	cin >> nombre;
 	archivo.open(nombre);		//con el .txt(obligatorio)
 	if (!archivo.is_open()) {
-		cout << "Error en la apertura & carga del archivo..." << endl;
+		cout << "Error en la apertura&carga del archivo..." << endl;
 
 	}
 	else {
@@ -142,7 +142,12 @@ bool jugar(tJuegoPM& jpm) {
 		jugado = accion(jpm);
 		jpm.num--;
 		mostrar(jpm);
-		ganado = juegoGanado(jpm);
+		
+		if (juegoGanado(jpm)){
+			ganado = true;
+			cout << "Enorabuena has ganado la partida!!" << endl;
+			exit(1);
+		}
 	}
 
 	return jugado;
@@ -158,58 +163,67 @@ bool juegoGanado(const tJuegoPM& jpm) {		//funcion de logica especial propia par
 }
 
 bool accion(tJuegoPM& jpm) {
-	cout << endl << "   Introduzca un comando a realizar:   " << endl << endl;
-	
 	bool accionado = false;
 	string ac;
 	int f1, f2, c1, c2;
+	cout << endl << "   Introduzca un comando a realizar:   " << endl << endl;
+	
+	
 	if (jpm.tipo == "1D") {
 		cin >> ac;
-		if (ac == "SF") {		//funciona correctamente el comando
-			cout << "   Que columna quieres voltear: " << endl;
+		if (ac == "SF") {		//funciona 
+			cout << "   Que fila desea voltear: " << endl;
 			cin >> f1 >> f2;
-			swapF(jpm.matIni, f1, f2);
+			accionado = swapF(jpm.matIni, f1, f2);
 		}
-		else if (ac == "SC") {		//no funciona correctamente(revisar)/Creo que esta arrglado (Revisar)
-			cout << "   Que columna quieres voltear: " << endl;
+		else if (ac == "SC") {		//funciona
+			cout << "   Que columnas desea intercambiar: " << endl;
 			cin >> c1 >> c2;
-			swapC(jpm.matIni, c1, c2);
+			accionado = swapC(jpm.matIni, c1, c2);
 		}
-		else if (ac == "VF") {		//no funciona correctamente(revisar)/Creo que esta arrglado (Revisar)
-			cout << "   Que columna quieres voltear: " << endl;
+		else if (ac == "VF") {		//funciona
+			cout << "   Que fila desea voltear: " << endl;
 			cin >> f1;
-			voltearF(jpm.matIni, f1);
+			accionado = voltearF(jpm.matIni, f1);
 		}
-		else if (ac == "SD") {		//no funciona correctamente(revisar) /No esta creada la funcion y no se como hacerla
-			cout << "   Que columna quieres voltear: " << endl;
+		else if (ac == "SD") {		//funciona Parcialmente
+			cout << "   Que diagonales desea intercambiar: " << endl;
 			cin >> f1;
-			swapD(jpm.matIni, f1);
+			accionado = swapD(jpm.matIni, f1);
 		}
-		else if (ac == "VC") {	    //no funciona correctamente(revisar) /Arreglado
-			cout << "   Que columna quieres voltear: " << endl;
+		else if (ac == "VC") {	    //funciona
+			cout << "   Que columna desea voltear: " << endl;
 			cin >> f1;
-			voltearC(jpm.matIni, f1);
+			accionado = voltearC(jpm.matIni, f1);
 		}
-		else if (ac == "VD") {		//no funciona correctamente(revisar)
-			cout << "   Que diagnolal desea voltear: " << endl;
+		else if (ac == "VD") {		// deberia funcionar(juan embid) 
+			cout << "   Que diagonal desea voltear: " << endl;
 			cin >> f1;
-			voltearD(jpm.matIni, f1);
+			accionado = voltearD(jpm.matIni, f1);
+
+		}//funcion de prueba de swap(para hacer test)
+		else if (ac == "swap") {
+			cin >> f1 >> f2 >> c1 >> c2;
+			firstswap(jpm.matIni, f1, f2, c1, c2);
 		}
 	}
 	else if (jpm.tipo == "2D") {
 		cin >> ac;
-		if (ac == "VV") {			//no funciona correctamente(revisar)
-			//esta funcion VV no requiere de parametros revisar pdf practica		
-			//voltearV(jpm.matIni);		//falta por hacer(no se ha hecho ni creado)
+		if (ac == "VV"){			
+					
 			voltearV(jpm.matIni);
+			accionado = true;	
+			
 		}
-		else if (ac == "VH") {		//no funciona correctamente(revisar)
-			//esta funcion VH no requiere de parametros revisar pdf practica		
-			//void voltearH(jpm.matIni):	//falta por hacer(no se ha hecho ni creado)
+		else if (ac == "VH") {		
+				
 			voltearH(jpm.matIni);
+			accionado = true;
+			
 		}
 		else if (ac == "RD") {		//funciona correctamente
 			rotarD(jpm.matIni);
+			accionado = true;
 
 		}
 		else if (ac == "SA") {		//no funciona correctamente(revisar)
@@ -220,11 +234,11 @@ bool accion(tJuegoPM& jpm) {
 			cout << endl << "   Casilla 2: ";
 			cin >> b.coordenadaX;
 			cin >> b.coordenadaY;
-			swapAdy(jpm.matIni, a, b);		//esta funcion la cree yo,de alguna forma aqui no funciona revisar.
+			accionado = swapAdy(jpm.matIni, a, b);		//esta funcion la cree yo,de alguna forma aqui no funciona revisar.
 			
 		}
 		else if (ac =="VD"){	
-			// VoltearID(jpm.matIni);  //falta por hacer(no se ha hecho ni creado)
+			//accionado = VoltearID(jpm.matIni);  
 
 
 		}

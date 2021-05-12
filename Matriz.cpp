@@ -51,11 +51,59 @@ bool operator==(tMatrizChar const& mat1, tMatrizChar const& mat2) {
 	return igual;
 }
 
-bool swap(tMatrizChar& mat, tCoor pos1, tCoor pos2) {		//por ver
+bool swap(tMatrizChar& mat, tCoor pos1, tCoor pos2) {		//funciona
 	uint8 aux = mat.datos[pos1.coordenadaX][pos1.coordenadaY];
 	mat.datos[pos1.coordenadaX][pos1.coordenadaY] = mat.datos[pos2.coordenadaX][pos2.coordenadaY];
 	mat.datos[pos2.coordenadaX][pos2.coordenadaY] = aux;
 	return true;
+}
+
+
+//funcion de prueba para probar swap
+void firstswap(tMatrizChar& mat, int n1, int n2, int m1, int m2) {
+	tCoor coordenada1, coordenada2;
+	coordenada1.coordenadaX = n1;
+	coordenada1.coordenadaY = n2;
+	coordenada2.coordenadaX = m1;
+	coordenada2.coordenadaY = m2;
+	swap(mat, coordenada1, coordenada2);
+
+
+}
+
+bool voltearV(tMatrizChar& mat){//del txt
+	bool bolteado = false;
+	int aux;
+	for (int i = 0; i <mat.numFilas ; i++){
+		for (int j = 0; j < (mat.numCols/2) ; j++){
+			aux = mat.datos[i][j];
+			mat.datos[i][j] = mat.datos[i][(mat.numCols - 1) - j];
+			mat.datos[i][(mat.numCols - 1) - j] = aux;
+
+		}
+
+	}
+
+	
+
+	return bolteado;
+}
+
+bool voltearH(tMatrizChar& mat) {//del txt
+	int filasAux = mat.numFilas, cont = 1;
+	bool bolteado = false;
+	while (cont <= mat.numFilas / 2) {
+
+		if (swapF(mat, cont, filasAux)) {
+			
+			bolteado = true;
+			
+		}
+		cont++;
+		filasAux--;
+
+	}
+	return bolteado;
 }
 
 bool swapF(tMatrizChar& mat, int f1, int f2) {		//funciona correctamente
@@ -74,52 +122,68 @@ bool swapF(tMatrizChar& mat, int f1, int f2) {		//funciona correctamente
 
 }
 
-bool swapC(tMatrizChar& mat, int c1, int c2) {
+bool swapC(tMatrizChar& mat, int c1, int c2) {	//funciona
 	uint8 aux;
 	if (c1 > mat.numCols || c1<0 || c2>mat.numCols || c2 < 0) {
 		return false;
 	}
 	else {
-		for (int i = 0; i < mat.numFilas/2; i++) {
-			aux = mat.datos[i][c2];
-			mat.datos[i][c1] = mat.datos[i][c2];
-			mat.datos[i][c2] = aux;
+		for (int i = 0; i < mat.numFilas; i++) {
+			
+			firstswap(mat,i,c1,i,c2);
 		}
 		return true;
 	}
-
+	
 }
 
-bool swapD(tMatrizChar& mat, int d) {
-	if (d > mat.numCols || d > mat.numFilas) {
-
+bool swapD(tMatrizChar& mat, int diagonal) { //parcialmente correcto.
+	if (diagonal > mat.numCols || diagonal > mat.numFilas || diagonal == 0) {
 		return false;
+	}else{
+
+		for (int i = 0; i < mat.numCols; i++){
+			
+			if (i == mat.numCols-1){
+				
+				
+				firstswap(mat, i, diagonal, diagonal , i);
+			}
+			else{
+				firstswap(mat, i, diagonal, diagonal, i);
+			}
+			
+		}
+
+		return true;
 	}
 }
 
-bool voltearF(tMatrizChar& mat, int f){
-	uint8 aux;
+bool voltearF(tMatrizChar& mat, int f){//funciona
+	
+	uint8 aux;	
 	int numVeces = mat.numCols / 2;
 	if (f > mat.numFilas || f < 0) { return false; }
 	else {
-		for (int i = 0; i < numVeces;i++) {
+		for (int i = 0; i < numVeces; i++) {
 			aux = mat.datos[f][i];
-			mat.datos[f][i] = mat.datos[f][mat.numCols - i];
-			mat.datos[f][mat.numCols - i] = aux;
+			mat.datos[f][i] = mat.datos[f][mat.numCols - (i + 1)];
+			mat.datos[f][mat.numCols - (i + 1)] = aux;
 		}
 		return true;
 	}
 }
 
-bool voltearC(tMatrizChar& mat, int c) {
-	uint8 aux;
-	int numVeces = mat.numFilas/2;
+bool voltearC(tMatrizChar& mat, int c) {	//funciona
+	
+	uint8 aux;	// funcion arreglada de Xarli
+	int numVeces = mat.numFilas / 2;
 	if (c > mat.numCols || c < 0) { return false; }
 	else {
 		for (int i = 0; i < numVeces; i++) {
 			aux = mat.datos[i][c];
-			mat.datos[i][c] = mat.datos[mat.numFilas - (i+1)][c];
-			mat.datos[mat.numFilas- (i+1)][c] = aux;
+			mat.datos[i][c] = mat.datos[mat.numFilas - (i + 1)][c];
+			mat.datos[mat.numFilas - (i + 1)][c] = aux;
 		}
 		return true;
 	}
@@ -168,55 +232,75 @@ bool swapAdy(tMatrizChar matriz, tCoor a, tCoor s){
 
 bool voltearD(tMatrizChar& mat, int d){
 	bool resultado = false;
-	uint8 aux;
-	if (mat.numCols == mat.numFilas) {
-		if (d < mat.numCols && d >= mat.numCols) {
-			int k = (mat.numCols + d) / 2;
-			int b = 0;
-			if (d < 0) {
-				d = -d;
-				for (int a = d; a < k; a++) {
-					aux = mat.datos[a][b];
-					mat.datos[a][b] = mat.datos[mat.numCols - b - 1][mat.numCols - a - 1];
-					mat.datos[mat.numCols - b - 1][mat.numCols - a - 1] = aux;
-					b++;
-				}
-			}
-			else {
-				for (int a = d; a < k; a++) {
-					aux = mat.datos[b][a];
-					mat.datos[b][a] = mat.datos[mat.numCols - a - 1][mat.numCols - b - 1];
-					mat.datos[mat.numCols - a - 1][mat.numCols - b - 1] = aux;
-					b++;
-				}
-			}
+	tCoor posi1, posi2;
+	int i, j,l, m;
+	if (d <= mat.numCols && d >= -mat.numCols) {
+		if (mat.numCols == mat.numFilas) {
 			resultado = true;
+			if (d < 0) {
+				d = -d;	//d es absoluto
+				 i = d;
+				 j = mat.numFilas - 1 - d;
+				 l = 0;
+				 m = mat.numFilas - 1;
+				for (int a = 0; a < mat.numCols; a++) {
+					posi1.coordenadaX = i;
+					posi1.coordenadaY = l;
+					posi2.coordenadaX = m;
+					posi2.coordenadaY = j;
+					swap(mat, posi1, posi2);
+					i++;	
+					j--;
+					l++;
+					m--;
+
+				}
+			}else{
+				i = d;
+				j = mat.numFilas - 1 - d;
+				l = 0;
+				m = mat.numFilas - 1;
+				for (int k = 0; k < mat.numCols; k++)
+				{
+					posi1.coordenadaX = l;
+					posi1.coordenadaY = i;
+					posi2.coordenadaX = j;
+					posi2.coordenadaY = m;
+					swap(mat, posi1, posi2);
+					i++;
+					j--;
+					l++;
+					m--;	
+				}
+					
+			}
+
+
 		}
+		else
+		{
+
+		}
+
+			
+		resultado = true;
 	}
+	
 	return resultado;
+
+
+
 	return false;
 }
 
-void voltearV(tMatrizChar& mat) {
-	int numVeces = mat.numCols / 2;
-	uint8 aux;
-	for (int i = 0; i < numVeces; i++) {
-		for (int j = 0; j < mat.numFilas; j++) {
-			aux = mat.datos[i][j];
-			mat.datos[i][j] = mat.datos[i][mat.numCols - j];
-			mat.datos[i][mat.numCols - j] = aux;
-		}
-	}
-}
 
-void voltearH(tMatrizChar& mat) {
-	int numVeces = mat.numFilas / 2;
-	uint8 aux;
-	for (int i = 0; i < numVeces; i++) {
-		for (int j = 0; j < mat.numFilas; j++) {
-			aux = mat.datos[i][j];
-			mat.datos[i][j] = mat.datos[mat.numFilas-i][j];
-			mat.datos[mat.numFilas - i][j] = aux;
-		}
-	}
-}
+
+
+
+
+/*bool VoltearID(tMatrizChar matrizIni){
+	bool volteado = false;
+
+
+	return volteado;
+}*/

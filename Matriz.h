@@ -46,9 +46,10 @@ bool voltearC(tMatrizChar& mat, int c); /*dar la vuelta a la columna c con
 
 bool voltearD(tMatrizChar& mat, int c);	
 
-void voltearV(tMatrizChar& mat);
-
-void voltearH(tMatrizChar& mat);
+//bool VoltearID(tMatrizChar& mat);
+void firstswap(tMatrizChar& mat, int n1, int n2, int m1, int m2);
+bool voltearH(tMatrizChar& mat);
+bool voltearV(tMatrizChar& mat);
 
 #endif 
 
