@@ -90,14 +90,14 @@ bool voltearV(tMatrizChar& mat){//del txt
 }
 
 bool voltearH(tMatrizChar& mat) {//del txt
-	int filasAux = mat.numFilas, cont = 1;
+	int filasAux = mat.numFilas - 1, cont = 0;
 	bool bolteado = false;
-	while (cont <= mat.numFilas / 2) {
+	while (cont < (mat.numFilas / 2)) {
 
 		if (swapF(mat, cont, filasAux)) {
-			
+
 			bolteado = true;
-			
+
 		}
 		cont++;
 		filasAux--;
