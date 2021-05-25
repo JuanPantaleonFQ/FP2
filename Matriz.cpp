@@ -272,9 +272,7 @@ bool voltearD(tMatrizChar& mat, int d){
 					l++;
 					m--;	
 				}
-					
 			}
-
 
 		}
 		else
