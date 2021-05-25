@@ -28,13 +28,76 @@ int menu() {		//done
 	int opcion;
 	do {
 		cout << "     Elija una opcion." << endl << endl;
-		cout << "     1. Version de juego - 1D" << endl;
-		cout << "     2. version de juego - 2D" << endl;
+		cout << "	  1. Resolver un puzzle 1" << endl;
+		cout << "     2. Resolver un puzzle 2D" << endl;
+		cout << "     3. Añadir un puzzle al catálogo" << endl;
 		cout << "     0. Salir " << endl;
 		cin >> opcion;
 
 	} while (opcion > 2 || opcion < 0);
 
+	return opcion;
+}
+
+int menu1D(int orden) {
+	int opcion;
+	do {
+		if (orden == -1) {
+			cout << "En esta versión están disponibles los siguientes retos: " << endl;
+			cout << "	1 Torre con un máximo de 2 movimientos" << endl;
+			cout << "	2 Intercambiar columnas con un máximo de 3 movimientos" << endl;
+			cout << "	3 Intercambiar diagonales con un máximo de 3 movimientos" << endl;
+			cout << "	4 Intercambiar filas con un máximo de 3 movimientos" << endl;
+			cout << "	5 Voltear columna con un máximo de 4 movimientos" << endl;
+			cout << "	6 Voltear diagonal con un máximo de 4 movimientos" << endl;
+			cout << "	7 Voltear fila con un máximo de 4 movimientos" << endl;
+			cout << "	0 salir" << endl;
+			cout << "	-1 Mostrar la lista ordenada de mayor a menor" << endl;
+			cout << "	-2 Mostrar la lista ordenada de menor a mayor" << endl;
+		}
+		if (orden == -2) {
+			cout << "En esta versión están disponibles los siguientes retos: " << endl;
+			cout << "	1 Voltear fila con un máximo de 4 movimientos" << endl;
+			cout << "	2 Voltear diagonal con un máximo de 4 movimientos" << endl;
+			cout << "	3 Voltear columna con un máximo de 4 movimientos" << endl;
+			cout << "	4 Intercambiar filas con un máximo de 3 movimientos" << endl;
+			cout << "	5 Intercambiar diagonales con un máximo de 3 movimientos" << endl;
+			cout << "	6 Intercambiar columnas con un máximo de 3 movimientos" << endl;
+			cout << "	7 Torre con un máximo de 2 movimientos" << endl;
+			cout << "	0 salir" << endl;
+			cout << "	-1 Mostrar la lista ordenada de mayor a menor" << endl;
+			cout << "	-2 Mostrar la lista ordenada de menor a mayor" << endl;
+		}
+	} while (opcion >= -2 && opcion <= 7);
+
+	return opcion;
+}
+int menu2D(int orden) {
+	int opcion;
+	do {
+		if (orden == -1) {
+			cout << "En esta versión están disponibles los siguientes retos: " << endl;
+			cout << "	1 Rotar a la derecha con un máximo de 1 movimientos" << endl;
+			cout << "	2 Voltear respecto a la horizontal con un máximo de 1 movimientos" << endl;
+			cout << "	3 Voltear respecto a la vertical con un máximo de 1 movimientos" << endl;
+			cout << "	4 Intercambiar las posiciones vecinas de las posiciones con un máximo de 3 movimiento" << endl;
+			cout << "	5 Voltear respecto a la diagonal principal con un máximo de 3 movimientos" << endl;
+			cout << "	0 salir" << endl;
+			cout << "	-1 Mostrar la lista ordenada de mayor a menor" << endl;
+			cout << "	-2 Mostrar la lista ordenada de menor a mayor" << endl;
+		}
+		if (orden == -2) {
+			cout << "En esta versión están disponibles los siguientes retos: " << endl;
+			cout << "	1 Voltear respecto a la diagonal principal con un máximo de 3 movimientos" << endl;
+			cout << "	2 Intercambiar las posiciones vecinas de las posiciones con un máximo de 3 movimiento" << endl;
+			cout << "	3 Voltear respecto a la vertical con un máximo de 1 movimientos" << endl;
+			cout << "	4 Voltear respecto a la horizontal con un máximo de 1 movimientos" << endl;
+			cout << "	5 Rotar a la derecha con un máximo de 1 movimientos" << endl;
+			cout << "	0 salir" << endl;
+			cout << "	-1 Mostrar la lista ordenada de mayor a menor" << endl;
+			cout << "	-2 Mostrar la lista ordenada de menor a mayor" << endl;
+		}
+	} while (opcion >= -2 && opcion <= 7);
 	return opcion;
 }
 
@@ -66,6 +129,8 @@ void mainJuegoPM() {		//done
 			if (!jugar(juego)) {
 				cout << msgerror << endl;
 			}
+			break;
+		case 3:
 
 		}
 

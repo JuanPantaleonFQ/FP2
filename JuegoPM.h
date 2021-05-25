@@ -17,6 +17,10 @@ void mainJuegoPM();
 
 int menu();
 
+int menu1D(int orden);
+
+int menu2D(int orden);
+
 void printMatriz(const tMatrizChar& mat); //Funcion añadida exclusiva @juanfemeniaquevedo, enseña la matriz que se le pase por parametro
 
 //void banner();
