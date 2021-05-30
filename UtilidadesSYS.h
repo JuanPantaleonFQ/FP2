@@ -6,6 +6,7 @@
 #include <fstream>
 #include <Windows.h>
 #include <iostream>
+#include <string>
 using namespace std;
 
 typedef unsigned char uint8;  // Byte

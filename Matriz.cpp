@@ -39,8 +39,25 @@ void printMatriz(const tMatrizChar& mat) {
 	
 }
 
-bool operator==(tMatrizChar const& mat1, tMatrizChar const& mat2) {
-	bool igual = true;
+bool operator==(tMatrizChar const& mat1, tMatrizChar const& mat2) {	//error iguales corregido
+	/*
+	* bool iguales = false;
+	int posF = 0, posC = 0;
+	while (posF < mat1.numFilas && !iguales) {
+		posC = 0;
+		while (posC < mat1.numCols && !iguales) {
+			if (mat1.datos[posF][posC] == mat2.datos[posF][posC]) {
+				iguales = true;
+			}else{
+				posC++;
+			}
+				
+		}
+		posF++;
+	}
+	return iguales;
+	*/
+	bool igual = true;	//esta funcion es util, ya que parte de que son iguales, y devuelve igual = true si no hay ninguna casilla diferente.
 	for (int i = 0; i < mat1.numFilas; i++) {
 		for (int j = 0; j < mat1.numCols; j++) {
 			if (mat1.datos[i][j] != mat2.datos[i][j]) {
@@ -49,6 +66,7 @@ bool operator==(tMatrizChar const& mat1, tMatrizChar const& mat2) {
 		}
 	}
 	return igual;
+	
 }
 
 bool swap(tMatrizChar& mat, tCoor pos1, tCoor pos2) {		//funciona
@@ -89,15 +107,17 @@ bool voltearV(tMatrizChar& mat){//del txt
 	return bolteado;
 }
 
+
+
 bool voltearH(tMatrizChar& mat) {//del txt
-	int filasAux = mat.numFilas - 1, cont = 0;
+	int filasAux = mat.numFilas, cont = 1;
 	bool bolteado = false;
-	while (cont < (mat.numFilas / 2)) {
+	while (cont <= mat.numFilas / 2) {
 
 		if (swapF(mat, cont, filasAux)) {
-
+			
 			bolteado = true;
-
+			
 		}
 		cont++;
 		filasAux--;
@@ -272,7 +292,9 @@ bool voltearD(tMatrizChar& mat, int d){
 					l++;
 					m--;	
 				}
+					
 			}
+
 
 		}
 		else
@@ -292,6 +314,20 @@ bool voltearD(tMatrizChar& mat, int d){
 }
 
 
+bool enRango(tMatrizChar const& mat, tCoor pos){
+
+	return enRangoFila(mat,pos) && enRangoColumna(mat,pos);
+}
+
+bool enRangoFila(tMatrizChar const& mat, tCoor pos){
+
+	return false;
+}
+
+bool enRangoColumna(tMatrizChar const& mat, tCoor pos){
+
+	return false;
+}
 
 
 

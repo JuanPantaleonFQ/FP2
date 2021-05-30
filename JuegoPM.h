@@ -2,40 +2,36 @@
 //Realizado por Juan Pantaleon Femenia Quevedo y Carlos Garcia Tovar.
 #ifndef JUEGOPM_H
 #define JUEGOPM_H
-#include "Matriz.h"
+#include "ListaPuzzles.h"
 
 
-typedef struct {
+/*typedef struct {
 	string tipo;	//tipo de juego, 2D o 1D
 	int num;		//intentos de realizar el ejercicio
 	tMatrizChar matIni, matFin;
-} tJuegoPM;
+} tJuegoPM;*/
 
 //string TiposJPM[]{ "1D","2D" };
 
-void mainJuegoPM();
+int mainPuzzlesReunidos();
 
 int menu();
 
-int menu1D(int orden);
-
-int menu2D(int orden);
-
-void printMatriz(const tMatrizChar& mat); //Funcion añadida exclusiva @juanfemeniaquevedo, enseña la matriz que se le pase por parametro
+//void printMatriz(const tMatrizChar& mat); //Funcion añadida exclusiva @juanfemeniaquevedo, enseña la matriz que se le pase por parametro
 
 //void banner();
 
-bool iniciar(tJuegoPM& jpm, string modo);
+//bool iniciar(tJuegoPM& jpm, string modo);
 
-bool cargar(tJuegoPM& jpm);
+//bool cargar(tJuegoPM& jpm);
 
-bool juegoGanado(const tJuegoPM& jpm);
+//bool juegoGanado(const tJuegoPM& jpm);
 
-void mostrar(const tJuegoPM& jpm);
+//void mostrar(const tJuegoPM& jpm);
 
-bool jugar(tJuegoPM& jpm);
+//bool jugar(tJuegoPM& jpm);
 
-bool accion(tJuegoPM& jpm);
+//bool accion(tJuegoPM& jpm);
 
 
 

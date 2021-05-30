@@ -1,46 +1,32 @@
 #pragma once
-//Realizado por Juan Pantaleon Femenia Quevedo y Carlos Garcia Tovar.
+
+
 #ifndef PUZZLE_H
 #define PUZZLE_H
 #include "Matriz.h"
 
-
 typedef struct {
-	string tipo;	//tipo de juego, 2D o 1D
-	int num;		//intentos de realizar el ejercicio
+	string nombrePuzzle;
+	string nombreFichero;
+	string tipoPuzzle;
+	int numMaxMov;	//intentos de realizar el ejercicio
 	tMatrizChar matIni, matFin;
-	string file;
-} tPuzzle;
 
-//string TiposJPM[]{ "1D","2D" };
+}tPuzzle;
 
-void mainJuegoPM();
+void mainPuzzle(tPuzzle& jpm); /*función que resuelve un puzzle. Corresponde a
+								la antigua función mainJuegoPM*/
 
-int menu();
+bool cargar(tPuzzle& jpm, string tipo);	/*abre el fichero que corresponda y
+										llama a la función cargar del módulo Matriz.*/
 
-int menu1D(int orden);
+void mostrar(const tPuzzle& jpm);  /*muestra el estado del puzzle utilizando las
+									facilidades del módulo utilidadesSYS*/
 
-int menu2D(int orden);
+bool jugar(tPuzzle& jpm);	/*permite realizar las acciones necesarias para jugar
+								y controla si se ha llegado al límite de acciones permitidas*/
 
-void printMatriz(const tMatrizChar& mat); //Funcion añadida exclusiva @juanfemeniaquevedo, enseña la matriz que se le pase por parametro
+void accion(tPuzzle& jpm);		/*según el comando de acción tecleado por el
+							usuario, llama a la acción correspondiente definida en el módulo Matriz*/
 
-//void banner();
-
-bool iniciar(tJuegoPM& jpm, string modo);
-
-bool cargar(tJuegoPM& jpm);
-
-bool juegoGanado(const tJuegoPM& jpm);
-
-void mostrar(const tJuegoPM& jpm);
-
-bool jugar(tJuegoPM& jpm);
-
-bool accion(tJuegoPM& jpm);
-
-
-
-
-
-
-#endif 
+#endif

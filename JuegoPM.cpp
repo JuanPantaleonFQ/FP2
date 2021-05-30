@@ -28,110 +28,46 @@ int menu() {		//done
 	int opcion;
 	do {
 		cout << "     Elija una opcion." << endl << endl;
-		cout << "	  1. Resolver un puzzle 1" << endl;
+		cout << "     1. Resolver un puzzle 1D" << endl;
 		cout << "     2. Resolver un puzzle 2D" << endl;
 		cout << "     3. Añadir un puzzle al catálogo" << endl;
-		cout << "     0. Salir " << endl;
+		cout << "     0. Salir " << endl << endl;
+		cout << "     Opcion a elegir:";
 		cin >> opcion;
 
-	} while (opcion > 2 || opcion < 0);
+	} while (opcion > 3 || opcion < 0);
 
 	return opcion;
 }
 
-int menu1D(int orden) {
-	int opcion;
-	do {
-		if (orden == -1) {
-			cout << "En esta versión están disponibles los siguientes retos: " << endl;
-			cout << "	1 Torre con un máximo de 2 movimientos" << endl;
-			cout << "	2 Intercambiar columnas con un máximo de 3 movimientos" << endl;
-			cout << "	3 Intercambiar diagonales con un máximo de 3 movimientos" << endl;
-			cout << "	4 Intercambiar filas con un máximo de 3 movimientos" << endl;
-			cout << "	5 Voltear columna con un máximo de 4 movimientos" << endl;
-			cout << "	6 Voltear diagonal con un máximo de 4 movimientos" << endl;
-			cout << "	7 Voltear fila con un máximo de 4 movimientos" << endl;
-			cout << "	0 salir" << endl;
-			cout << "	-1 Mostrar la lista ordenada de mayor a menor" << endl;
-			cout << "	-2 Mostrar la lista ordenada de menor a mayor" << endl;
-		}
-		if (orden == -2) {
-			cout << "En esta versión están disponibles los siguientes retos: " << endl;
-			cout << "	1 Voltear fila con un máximo de 4 movimientos" << endl;
-			cout << "	2 Voltear diagonal con un máximo de 4 movimientos" << endl;
-			cout << "	3 Voltear columna con un máximo de 4 movimientos" << endl;
-			cout << "	4 Intercambiar filas con un máximo de 3 movimientos" << endl;
-			cout << "	5 Intercambiar diagonales con un máximo de 3 movimientos" << endl;
-			cout << "	6 Intercambiar columnas con un máximo de 3 movimientos" << endl;
-			cout << "	7 Torre con un máximo de 2 movimientos" << endl;
-			cout << "	0 salir" << endl;
-			cout << "	-1 Mostrar la lista ordenada de mayor a menor" << endl;
-			cout << "	-2 Mostrar la lista ordenada de menor a mayor" << endl;
-		}
-	} while (opcion >= -2 && opcion <= 7);
-
-	return opcion;
-}
-int menu2D(int orden) {
-	int opcion;
-	do {
-		if (orden == -1) {
-			cout << "En esta versión están disponibles los siguientes retos: " << endl;
-			cout << "	1 Rotar a la derecha con un máximo de 1 movimientos" << endl;
-			cout << "	2 Voltear respecto a la horizontal con un máximo de 1 movimientos" << endl;
-			cout << "	3 Voltear respecto a la vertical con un máximo de 1 movimientos" << endl;
-			cout << "	4 Intercambiar las posiciones vecinas de las posiciones con un máximo de 3 movimiento" << endl;
-			cout << "	5 Voltear respecto a la diagonal principal con un máximo de 3 movimientos" << endl;
-			cout << "	0 salir" << endl;
-			cout << "	-1 Mostrar la lista ordenada de mayor a menor" << endl;
-			cout << "	-2 Mostrar la lista ordenada de menor a mayor" << endl;
-		}
-		if (orden == -2) {
-			cout << "En esta versión están disponibles los siguientes retos: " << endl;
-			cout << "	1 Voltear respecto a la diagonal principal con un máximo de 3 movimientos" << endl;
-			cout << "	2 Intercambiar las posiciones vecinas de las posiciones con un máximo de 3 movimiento" << endl;
-			cout << "	3 Voltear respecto a la vertical con un máximo de 1 movimientos" << endl;
-			cout << "	4 Voltear respecto a la horizontal con un máximo de 1 movimientos" << endl;
-			cout << "	5 Rotar a la derecha con un máximo de 1 movimientos" << endl;
-			cout << "	0 salir" << endl;
-			cout << "	-1 Mostrar la lista ordenada de mayor a menor" << endl;
-			cout << "	-2 Mostrar la lista ordenada de menor a mayor" << endl;
-		}
-	} while (opcion >= -2 && opcion <= 7);
-	return opcion;
-}
-
-void mainJuegoPM() {		//done
-	tJuegoPM juego;		//creamos una instancia juego unica para nuestro programa
-	bool exit = false, juegoCorrecto;
-	do
-	{
+int mainPuzzlesReunidos() {		//done
+	tPuzzlesReunidos listaPuzzles;
+	bool exit = false;
+	bool juegocorrecto = false;
+	inicializar(listaPuzzles);
+	if (!cargar(listaPuzzles)) {
+		cout << "ERROR: Error al cargar los Puzzles." << endl;
+	}
+	do{
 		switch (menu())
 		{
 		case 0:
+
 			exit = true;
 			break;
-		case 1:
-			juegoCorrecto = iniciar(juego, "1D");
-			if (!juegoCorrecto) {
-				cout << "   Error al iniciar el juego..." << endl;
-			}
-			if (!jugar(juego)) {
-				cout << msgerror << endl;
-			}
+		case 1:			
+			int numeroPuzzle = elegirPuzzle(listaPuzzles[0]);
 
 			break;
-		case 2:
-			juegoCorrecto = iniciar(juego, "2D");
-			if (!juegoCorrecto) {
-				cout << "   Error al iniciar el juego..." << endl;
-			}
-			if (!jugar(juego)) {
-				cout << msgerror << endl;
-			}
-			break;
-		case 3:
+		case 2:			
+			int numeroPuzzle = elegirPuzzle(listaPuzzles[1]);
 
+			break;
+		case 3:	//añadir un puzzle nuevo
+
+
+			
+			break;
 		}
 
 	} while (!exit);
@@ -140,7 +76,14 @@ void mainJuegoPM() {		//done
 
 }
 
-bool iniciar(tJuegoPM& jpm, string modo) {		//done
+
+
+
+
+
+
+
+/*bool iniciar(tJuegoPM& jpm, string modo) {		//done
 	bool iniciado = false;
 	jpm.tipo = modo;
 	if (cargar(jpm))
@@ -154,9 +97,9 @@ bool iniciar(tJuegoPM& jpm, string modo) {		//done
 
 
 	return iniciado;
-}
+}*/
 
-bool cargar(tJuegoPM& jpm) {	//done revisada
+/*bool cargar(tJuegoPM& jpm) {	//done revisada
 	string nombre;
 	ifstream archivo;
 	bool cargado = false, matrizIniCharge = false, matrizFinCharge = false;
@@ -165,9 +108,10 @@ bool cargar(tJuegoPM& jpm) {	//done revisada
 
 	cout << "   Nombre del archivo:" << endl;//(aqui es donde se pide el nombre de archivo y se abre el correspondiente).
 	cin >> nombre;
-	archivo.open(nombre);		//con el .txt(obligatorio)
+	nombre += ".txt";
+	archivo.open(nombre);		
 	if (!archivo.is_open()) {
-		cout << "Error en la apertura&carga del archivo..." << endl;
+		cout << "Error en la apertura o carga del archivo..." << endl;
 
 	}
 	else {
@@ -186,48 +130,51 @@ bool cargar(tJuegoPM& jpm) {	//done revisada
 
 
 
-
+		
 	}
 	return cargado;
-}
+}*/
 
-void mostrar(const tJuegoPM& jpm) {		//done
+/*void mostrar(const tJuegoPM& jpm) {		//done
 	cout << endl << "   Numero de intentos: " << jpm.num << endl << endl;
 	cout << "    Imagen original:" << endl;
 	printMatriz(jpm.matIni);
 	cout << "   Imagen final: " << endl;
 	printMatriz(jpm.matFin);
-}
+}*/
 
-bool jugar(tJuegoPM& jpm) {
+/*bool jugar(tJuegoPM& jpm) {
 	
-	bool jugado = false, ganado = false;
+	bool jugado = false, ganado = false; 
 	mostrar(jpm);
-	while (jpm.num != 0 || ganado) {	//una vez empieza el juego,hasta que no haya utilizado todos
+	while ((jpm.num != 0) && (ganado == false)) {	//una vez empieza el juego,hasta que no haya utilizado todos
+		
 		jugado = accion(jpm);
 		jpm.num--;
 		mostrar(jpm);
-		
-		if (juegoGanado(jpm)){
+
+		if (juegoGanado(jpm)) {//esto esta nice
 			ganado = true;
-			cout << "Enorabuena has ganado la partida!!" << endl;
+			cout << endl << " ¡¡ Enorabuena has ganado la partida !!" << endl;
 			exit(1);
 		}
+		
 	}
 
 	return jugado;
-}
+}*/
 
-bool juegoGanado(const tJuegoPM& jpm) {		//funcion de logica especial propia para comprobar si ha ganado el juego
+/*bool juegoGanado(const tJuegoPM& jpm) {		//funcion de logica especial propia para comprobar si ha ganado el juego
 	bool ganado = false;
-	if (jpm.matIni == jpm.matFin)		//utiliza el operador == definido en el modulo matriz para comparar las matrices y ver si son iguales.
-	{
+	if (jpm.matIni == jpm.matFin)		//utiliza el operador == definido en el modulo matriz para comparar las matrices y ver
+	{									//si son iguales.
+	
 		ganado = true;
 	}
 	return ganado;
-}
+}*/
 
-bool accion(tJuegoPM& jpm) {
+/*bool accion(tJuegoPM& jpm) {
 	bool accionado = false;
 	string ac;
 	int f1, f2, c1, c2;
@@ -271,6 +218,7 @@ bool accion(tJuegoPM& jpm) {
 			cin >> f1 >> f2 >> c1 >> c2;
 			firstswap(jpm.matIni, f1, f2, c1, c2);
 		}
+		
 	}
 	else if (jpm.tipo == "2D") {
 		cin >> ac;
@@ -308,8 +256,9 @@ bool accion(tJuegoPM& jpm) {
 
 		}
 		
+		
 
 		
 	}
 	return accionado;
-}
+}*/

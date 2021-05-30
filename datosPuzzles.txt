@@ -1,0 +1,26 @@
+7
+Torre 
+torre1_1D.txt
+Intercambiar columnas
+fichSC_1D.txt
+Intercambiar diagonales
+fichSD_1D.txt
+Intercambiar filas
+fichSF_1D.txt
+Voltear columna
+fichVC_1D.txt
+Voltear diagonal
+fichVD_1D.txt
+Voltear fila
+fichVF_1D.txt
+5
+Rotar a la derecha
+patitaRD_2D.txt
+Voltear respecto a la horizontal
+patitaVH_2D.txt
+Voltear respecto a la vertical
+patitaVV_2D.txt
+Intercambiar las posiciones vecinas
+fichSA_2D.txt
+Voltear respecto a la diagonal principal
+fichVD_2D.txt
