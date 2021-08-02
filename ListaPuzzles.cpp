@@ -14,7 +14,7 @@ bool cargar(tPuzzlesReunidos& jr){
 
 	string datos = "datosPuzzles.txt";
 	bool cargado = false;
-	int numRetos1D= 0, numRetos2D;
+	int numRetos1D= 0, numRetos2D=0;
 
 	ifstream archivo;
 	archivo.open(datos);
@@ -46,7 +46,22 @@ bool cargar(tPuzzlesReunidos& jr){
 }
 
 void guardar(const tPuzzlesReunidos& listas){
-
+	string datos = "datosPuzzles.txt";
+	ofstream archivo;
+	archivo.open(datos);
+	archivo << listas[0].contador << endl;
+	if (!archivo.is_open()) {
+		cout << "Error en la apertura o carga del archivo..." << endl;
+	}
+	else {
+		for (int j = 0; j < 2; j++)
+		{
+			for (int i = 0; i < listas[j].contador; i++) {
+				archivo << listas[j].arrayPuzzles[i]->nombrePuzzle << endl;
+				archivo << listas[j].arrayPuzzles[i]->nombreFichero << endl;
+			}
+		}
+	}
 }
 
 int elegirPuzzle(tListaPuzzles& lp){	
@@ -76,11 +91,28 @@ int mostrarListaPuzzles(tListaPuzzles& lp) {
 }
 
 bool insertarOrdenado(tListaPuzzles& l, tPuzzle* p){
-
-	return false;
+	bool encontrado = false;
+	for (int i = 0; i < MAX_PUZZLES; i++){
+		if (p->numMaxMov<l.arrayPuzzles[i]->numMaxMov) {
+			for (int j = MAX_PUZZLES; j > i; j--) {
+				l.arrayPuzzles[j] = l.arrayPuzzles[j - 1];
+				if (j == i + 1) {
+					l.arrayPuzzles[i - 1] = p;
+					}
+			}
+			encontrado = true;
+		}
+	}
+	return encontrado;
 }
 
 bool buscar(const tListaPuzzles& lista, tPuzzle* puzzle, int& pos){
-
-	return false;
+	bool encontrado = false;
+	for (int i = 0; i < MAX_PUZZLES; i++){
+		if (lista.arrayPuzzles[i] == puzzle) {
+			pos = i;
+			encontrado = true;
+		}
+	}
+	return encontrado;
 }
